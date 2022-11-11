@@ -1,0 +1,23 @@
+<div *ngFor='let question of surveyQuestions' class="card m-1 p-1 bg-light">
+    <h4>
+      {{ question.qnumber }}
+    </h4>
+    
+    <div class="card-text bg-white p-1">{{ question.text }}
+
+        <div *ngIf="question.type==='mcq'">
+            <div *ngFor="let option of question.choices">
+                <label>
+                <input type="radio" name="question" [value]="option" (change) ="handleChange(option)">
+                {{option}}
+                </label>
+            </div>
+        </div>  
+
+        <div *ngIf="question.type==='textbox'">
+            <input type="text" name="txtAnswer">
+        </div>  
+    </div>
+  </div>
+  <button mat-button color="primary" (click)='submitSurvey()'>Submit</button>
+  <button mat-button color="primary" (click)='cancel()'>Cancel</button>

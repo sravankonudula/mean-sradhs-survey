@@ -28,23 +28,39 @@ module.exports.displaySurveyList = (req, res, next) => {
     });
 }
 
-module.exports.displayAddPage = (req, res, next) => {
-    // res.render('book/add', {title: 'Add Book', 
-    // displayName: req.user ? req.user.displayName : ''})        
-    
-    res.json({success: true, msg: 'successfully displayed the add page'});
-}
 
 module.exports.processAddPage = (req, res, next) => {
-    let newSurvey = Survey({
+    let survey = new Survey();
+
+    for(let survey of req.body.survey)
+    {
+        let book = new Book(
+          line.book._id,
+          line.book.name,
+          line.book.author,
+          line.book.description,
+          line.book.price  
+        );
+        let quantity = line.quantity;
+        cart.lines.push({book, quantity});
+    }
+    cart.itemCount = req.body.cart.itemCount;
+    cart.cartPrice = req.body.cart.cartPrice;
+
+    // Create a new Order Object
+    let newOrder = Order({
         "name": req.body.name,
-        "author": req.body.author,
-        "published": req.body.published,
-        "description": req.body.description,
-        "price": req.body.price
+        "address": req.body.address,
+        "city": req.body.city,
+        "province": req.body.province,
+        "postalCode": req.body.postalCode,
+        "country": req.body.country,
+        "shipped": req.body.shipped,
+        "cart": cart
     });
 
-    Survey.create(newSurvey, (err, Survey) =>{
+    // Add new Order Object to the Database
+    Order.create(newOrder, (err, Order) => {
         if(err)
         {
             console.log(err);
@@ -52,13 +68,42 @@ module.exports.processAddPage = (req, res, next) => {
         }
         else
         {
-            // refresh the book list
-            //res.redirect('/book-list');
-            res.json({success: true, msg: 'successfully added new Survey'});
+            res.json({success: true, msg: 'Successfully Added New Order'});
         }
-    });
-
+    }); 
 }
+
+module.exports.displayAddPage = (req, res, next) => {
+    // res.render('book/add', {title: 'Add Book', 
+    // displayName: req.user ? req.user.displayName : ''})        
+    
+    res.json({success: true, msg: 'successfully displayed the add page'});
+}
+
+// module.exports.processAddPage = (req, res, next) => {
+//     let newSurvey = Survey({
+//         "name": req.body.name,
+//         "author": req.body.author,
+//         "published": req.body.published,
+//         "description": req.body.description,
+//         "price": req.body.price
+//     });
+
+//     Survey.create(newSurvey, (err, Survey) =>{
+//         if(err)
+//         {
+//             console.log(err);
+//             res.end(err);
+//         }
+//         else
+//         {
+//             // refresh the book list
+//             //res.redirect('/book-list');
+//             res.json({success: true, msg: 'successfully added new Survey'});
+//         }
+//     });
+
+// }
 
 module.exports.displayEditPage = (req, res, next) => {
     let id = req.params.id;

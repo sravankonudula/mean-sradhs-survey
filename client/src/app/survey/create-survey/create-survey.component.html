@@ -1,4 +1,6 @@
-<div *ngFor='let question of surveyQuestions' class="card m-1 p-1 bg-light">
+<div style="margin:5%; font-size: 20px;">
+
+<div *ngFor='let question of surveyQuestions.questions' class="card m-1 p-1 bg-light">
     <h4>
       {{ question.qnumber }}
     </h4>
@@ -14,10 +16,14 @@
             </div>
         </div>  
 
-        <div *ngIf="question.type==='textbox'">
+        <div *ngIf="question.type==='text'">
             <input type="text" name="txtAnswer">
         </div>  
     </div>
   </div>
-  <button mat-button color="primary" (click)='submitSurvey()'>Submit</button>
-  <button mat-button color="primary" (click)='cancel()'>Cancel</button>
+<br>
+  <button type="button" class="btn btn-success" (click)='submitSurvey()' style="font-size: 25px;" >Submit</button> &nbsp; &nbsp;
+  <button type="button" class="btn btn-secondary" (click)='cancel()' style="font-size: 25px;">Cancel</button>
+
+</div>
+

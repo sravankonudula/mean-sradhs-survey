@@ -14,7 +14,8 @@ let mongoose = require('mongoose');
 // module.exports = mongoose.model('Survey', surveyModel);
 
 let surveyModel = mongoose.Schema({
-    id: String,
+    _id: String,
+    title: String,
     questions:
     [
         {
@@ -27,7 +28,7 @@ let surveyModel = mongoose.Schema({
     ]
     },
     {
-        collection: 'survey'
+        collection: 'survey_questions'
     });
 
 module.exports = mongoose.model('Survey', surveyModel);

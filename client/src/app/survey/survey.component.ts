@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// import {MatButtonModule} from '@angular/material/button';
-
+import { Survey } from '../model/survey.model';
+import { SurveyRepository } from '../model/survey.repository';
 
 @Component({
   selector: 'app-survey',
@@ -10,13 +10,24 @@ import { Router } from '@angular/router';
 })
 export class SurveyComponent implements OnInit {
 
-  constructor(    private router: Router
+  constructor(    
+    private repository: SurveyRepository,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
   }
 
   createSurvey(): void {
+    this.router.navigateByUrl('/create-survey');
+  }
+
+  get surveyQuestions(): Survey[] {
+    return this.repository
+      .getSurveyQuestions();
+  }
+
+  respondToSurvey(): void {
     this.router.navigateByUrl('/create-survey');
   }
   

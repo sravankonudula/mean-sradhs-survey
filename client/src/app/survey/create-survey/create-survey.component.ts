@@ -18,17 +18,33 @@ export class CreateSurveyComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get surveyQuestions(): Survey[] {
-    return this.repository
-      .getSurveyQuestions();
+  get surveyQuestions(): Survey {
+
+    var result =  this.repository
+    .getSurveyQuestions();
+
+    var result2 = result.filter(x=> x._id == "6371504b69ed3b157cb659b8")[0];
+
+    console.log(result2);
+
+    return result2;
+
+    // return this.repository
+    //   .getSurveyQuestions()[0];
   }
 
   submitSurvey(): void {
-    this.router.navigateByUrl('/create-survey');
+    if(confirm("Are you sure to delete?")) {
+      this.router.navigateByUrl('/survey-list');
+    }    
   }
 
   cancel(): void {
     this.router.navigateByUrl('/survey-list');
+  }
+
+  cl(name: string) {
+    
   }
 
 }

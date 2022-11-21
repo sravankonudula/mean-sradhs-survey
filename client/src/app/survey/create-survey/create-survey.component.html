@@ -1,3 +1,6 @@
+<!-- <form #form='ngForm'
+    (ngSubmit)='submitResponse(form)' class="m-2"> -->
+
 <div style="margin:5%; font-size: 20px;">
 
 <div *ngFor='let question of surveyQuestions.questions' class="card m-1 p-1 bg-light">
@@ -8,9 +11,9 @@
     <div class="card-text bg-white p-1">{{ question.text }}
 
         <div *ngIf="question.type==='mcq'">
-            <div *ngFor="let option of question.choices">
+            <div *ngFor="let option of question.choices; let i = index">
                 <label>
-                <input type="radio" name="question" [value]="option" (change) ="handleChange(option)">
+                <input type="radio" [name]="question.qnumber" [value]="option" (change) ="handleChange(option)">
                 {{option}}
                 </label>
             </div>
@@ -26,4 +29,6 @@
   <button type="button" class="btn btn-secondary" (click)='cancel()' style="font-size: 25px;">Cancel</button>
 
 </div>
+
+<!-- </form> -->
 

@@ -5,10 +5,11 @@ import { Cart } from './cart.model';
 import { RestDataSource } from './rest.datasource';
 import { HttpClientModule } from '@angular/common/http';
 import { SurveyRepository } from './survey.repository';
+import { Question, Survey, SurveyResponse } from './survey.model';
 
 @NgModule({
   imports: [HttpClientModule],
-  providers: [BookRepository, SurveyRepository, StaticDataSource, Cart,
+  providers: [BookRepository, SurveyRepository, StaticDataSource, Cart, Survey, Question, SurveyResponse,
   {provide: StaticDataSource, useClass: RestDataSource},
   RestDataSource]
 })

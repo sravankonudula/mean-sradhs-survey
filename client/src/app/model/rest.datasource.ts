@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book } from './book.model';
-import { Survey } from './survey.model';
+import { Question, Survey, SurveyResponse } from './survey.model';
 import { JwtHelperService } from '@auth0/angular-jwt'
 
 const PROTOCOL = 'http';
@@ -40,6 +40,28 @@ export class RestDataSource
     return this.http.get<Survey[]>(this.baseUrl + 'survey-list');
   }
 
+  getAllQuestions(): Observable<Question[]>
+  {
+    return this.http.get<Question[]>(this.baseUrl + 'questions');
+  }
+
+  SaveQuestion(question: Question): Observable<Question>
+  {
+    console.log(JSON.stringify(question));
+    return this.http.post<Question>(this.baseUrl + 'questions/add', question);
+  }
+
+  SaveSurvey(survey: Survey): Observable<Survey>
+  {
+    console.log(JSON.stringify(survey));
+    return this.http.post<Survey>(this.baseUrl + 'survey-list/add', survey);
+  }
+
+  SaveSurveyResponse(surveyResponse: SurveyResponse): Observable<SurveyResponse>
+  {
+    console.log(JSON.stringify(surveyResponse));
+    return this.http.post<SurveyResponse>(this.baseUrl + 'survey-list/addresponse', surveyResponse);
+  }
 
  
   private loadToken(): void

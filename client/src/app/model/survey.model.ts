@@ -1,9 +1,13 @@
+import { Injectable } from "@angular/core";
+import { Date } from "mongoose";
+
+@Injectable()
+
 export class Survey
 {
-
-  public _id: String;
   public title: String;
-  public questions: Question[];
+  public expires: String;
+  public questions: Number[];
 
   // constructor(
   //   public qnumber: Number,
@@ -23,9 +27,21 @@ export class Survey
   // }
 }
 
+@Injectable()
 export class Question{
   public qnumber: Number;
-  public type: String;
-  public text: String;
+  public qtype: String;
+  public qtext: String;
   public choices: String[];
+}
+
+@Injectable()
+export class SurveyResponse{
+  public surveyId: String;
+  public answers: [
+    {
+      qnumber: Number,
+      answer: String
+    }
+  ];
 }

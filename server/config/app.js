@@ -35,6 +35,7 @@ let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
 let booksRouter = require('../routes/book');
 let surveysRouter = require('../routes/survey');
+let questionsRouter = require('../routes/question');
 
 
 let app = express();
@@ -100,6 +101,8 @@ passport.use(strategy);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/survey-list', surveysRouter);
+app.use('/questions', questionsRouter);
+
 
 
 // catch 404 and forward to error handler

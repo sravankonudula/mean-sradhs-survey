@@ -14,16 +14,12 @@ let mongoose = require('mongoose');
 // module.exports = mongoose.model('Survey', surveyModel);
 
 let surveyModel = mongoose.Schema({
-    _id: String,
     title: String,
+    expires: String,
     questions:
     [
         {
-            name: String,
-            author: String,
-            published: String,
-            description: String,
-            price: Number
+            type: Number,
         }
     ]
     },

@@ -5,7 +5,8 @@ let mongoose = require('mongoose');
 let jwt = require('jsonwebtoken');
 
 // create a reference to the model
-let Survey = require('../models/survey');
+let Survey = require('../models/surveyquestion');
+let SurveyResponse = require('../models/surveyresponse');
 
 module.exports.displaySurveyList = (req, res, next) => {
     console.log("inside displsy survey list");
@@ -16,51 +17,22 @@ module.exports.displaySurveyList = (req, res, next) => {
         }
         else
         {
-            //console.log(BookList);
-
-            // res.render('book/list', 
-            // {title: 'Books', 
-            // BookList: bookList, 
-            // displayName: req.user ? req.user.displayName : ''});      
-
             res.json(surveyList);
         }
     });
 }
 
 
-module.exports.processAddPage = (req, res, next) => {
-    let survey = new Survey();
-
-    for(let survey of req.body.survey)
-    {
-        let book = new Book(
-          line.book._id,
-          line.book.name,
-          line.book.author,
-          line.book.description,
-          line.book.price  
-        );
-        let quantity = line.quantity;
-        cart.lines.push({book, quantity});
-    }
-    cart.itemCount = req.body.cart.itemCount;
-    cart.cartPrice = req.body.cart.cartPrice;
-
-    // Create a new Order Object
-    let newOrder = Order({
-        "name": req.body.name,
-        "address": req.body.address,
-        "city": req.body.city,
-        "province": req.body.province,
-        "postalCode": req.body.postalCode,
-        "country": req.body.country,
-        "shipped": req.body.shipped,
-        "cart": cart
+module.exports.processAddSurvey = (req, res, next) => {
+    debugger
+    let newSurvey = Survey({
+        "title": req.body.title,
+        "expires": req.body.expires,
+        "questions": req.body.questions
     });
 
     // Add new Order Object to the Database
-    Order.create(newOrder, (err, Order) => {
+    Survey.create(newSurvey, (err, survey) => {
         if(err)
         {
             console.log(err);
@@ -68,17 +40,45 @@ module.exports.processAddPage = (req, res, next) => {
         }
         else
         {
-            res.json({success: true, msg: 'Successfully Added New Order'});
+            res.json({success: true, msg: 'New survey has been created successfully!!!!'});
         }
     }); 
 }
 
-module.exports.displayAddPage = (req, res, next) => {
-    // res.render('book/add', {title: 'Add Book', 
-    // displayName: req.user ? req.user.displayName : ''})        
-    
-    res.json({success: true, msg: 'successfully displayed the add page'});
+module.exports.displayAddSurvey = (req, res, next) => {
+    res.json({success: true, msg: 'successfully displayed the add survey'});
 }
+
+module.exports.processAddSurveyResponse = (req, res, next) => {
+    debugger
+    let newSurveyResponse = SurveyResponse({
+        "surveyId": req.body.surveyId,
+        "answers": req.body.answers
+    });
+
+    // Add new Order Object to the Database
+    SurveyResponse.create(newSurveyResponse, (err, surveyResponse) => {
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+            res.json({success: true, msg: 'New survey response has been created successfully!!!!'});
+        }
+    }); 
+}
+
+module.exports.displayAddSurveyResponse = (req, res, next) => {
+    res.json({success: true, msg: 'successfully displayed the add survey response'});
+}
+
+
+
+
+
+
 
 // module.exports.processAddPage = (req, res, next) => {
 //     let newSurvey = Survey({

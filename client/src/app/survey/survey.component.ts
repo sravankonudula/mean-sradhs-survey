@@ -19,7 +19,7 @@ export class SurveyComponent implements OnInit {
   }
 
   createSurvey(): void {
-    this.router.navigateByUrl('/create-survey');
+    this.router.navigateByUrl('/create-question');
   }
 
   get surveyQuestions(): Survey[] {

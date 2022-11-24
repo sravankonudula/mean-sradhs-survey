@@ -7,6 +7,9 @@ import { PagesModule } from './pages/pages.module';
 import { SurveyComponent } from './survey/survey.component';
 import { JwtModule, JwtHelperService, JwtInterceptor   } from '@auth0/angular-jwt';
 import { CreateSurveyComponent } from './survey/create-survey/create-survey.component';
+import { CreateQuestionComponent } from './survey/create-question/create-question.component';
+import { RespondSurveyComponent } from './survey/respond-survey/respond-survey.component';
+import { FormsModule } from '@angular/forms';
 
 export function jwtTokenGetter(): string
 {
@@ -18,12 +21,15 @@ export function jwtTokenGetter(): string
     AppComponent,
     SurveyComponent,
     CreateSurveyComponent,
+    CreateQuestionComponent,
+    RespondSurveyComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BookStoreModule,
     PagesModule,
+    FormsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: jwtTokenGetter

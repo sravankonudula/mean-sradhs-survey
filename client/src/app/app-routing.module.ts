@@ -12,6 +12,8 @@ import { CheckoutComponent } from './book-store/checkout/checkout.component';
 import { StoreFirstGuard } from './book-store/guards/storeFirst.guards';
 import { SurveyComponent } from './survey/survey.component';
 import { CreateSurveyComponent } from './survey/create-survey/create-survey.component';
+import { CreateQuestionComponent } from './survey/create-question/create-question.component';
+import { RespondSurveyComponent } from './survey/respond-survey/respond-survey.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: { title: 'Home' } },
@@ -33,10 +35,20 @@ const routes: Routes = [
     canActivate: [StoreFirstGuard],
   },
   {
+    path: 'create-question',
+    component: CreateQuestionComponent,
+    data: { title: 'CreateQuestion' },
+  },
+  {
     path: 'create-survey',
     component: CreateSurveyComponent,
     data: { title: 'CreateSurvey' },
     canActivate: [StoreFirstGuard],
+  },
+  {
+    path: 'respond-survey',
+    component: RespondSurveyComponent,
+    data: { title: 'SurveyResponse' },
   },
   {
     path: 'cart',

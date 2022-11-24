@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Date } from "mongoose";
 
 @Injectable()
 
@@ -44,4 +43,12 @@ export class SurveyResponse{
       answer: String
     }
   ];
+}
+
+export class QuestionUI{
+  public qtext: String;
+  public choice1: String;
+  public choice2: String;
+  public choice3: String;
+  public choice4: String;
 }

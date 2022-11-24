@@ -52,17 +52,17 @@ export class CreateSurveyComponent implements OnInit {
   submitSurvey(): void {
     if(confirm("Are you sure to delete?")) {
       
-      // //Adding question
-      // let sampleQuestion: Question = {
-      //   qnumber: 2,
-      //   qtype: "mcq",
-      //   qtext: "Which product you purchased 2?",
-      //   choices: ["TV2","Fridge2"]
-      // };
+      //Adding question
+      let sampleQuestion: Question = {
+        qnumber: 2,
+        qtype: "mcq",
+        qtext: "Which product you purchased 2?",
+        choices: ["TV2","Fridge2"]
+      };
 
-      // this.repository.saveQuestion(sampleQuestion).subscribe(order => {
-      //  debugger
-      // });
+      this.repository.saveQuestion(sampleQuestion).subscribe(order => {
+       debugger
+      });
 
       //  //Adding survey
       //  let date = new Date(2022);

@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { SurveyRepository } from 'src/app/model/survey.repository';
 import { Question, Survey, SurveyResponse } from '../../model/survey.model';
 import { DatePipe } from '@angular/common'
-
-
+import { RestDataSource } from 'src/app/model/rest.datasource';
+import { Date } from 'mongoose';
 
 @Component({
   selector: 'app-create-survey',
@@ -14,17 +14,28 @@ import { DatePipe } from '@angular/common'
 })
 export class CreateSurveyComponent implements OnInit {
 
+  allquestions: Question[];
+  startDate: Date;
+  endDate: Date;
+  surveytitle: string;
+
+
   constructor(    
     private repository: SurveyRepository,
     private router: Router,
     public question: Question,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    private dataSource: RestDataSource
     )
      { }
 
   ngOnInit(): void {
-    debugger
-    let allquestions = this.getAllQuestions;
+    // this.allquestions = this.getAllQuestions;
+
+    this.dataSource.getAllQuestions().subscribe(data => {
+      this.allquestions = data;
+    });
+    this.allquestions.forEach(x => x.checked = false);
   }
 
   get surveyQuestions(): Survey {
@@ -45,55 +56,73 @@ export class CreateSurveyComponent implements OnInit {
   get getAllQuestions(): Question[] {
    let questions = this.repository
       .getAllQuestions();
-      debugger
+      
       return questions;
   }
 
   submitSurvey(): void {
-    if(confirm("Are you sure to delete?")) {
-      
-      //Adding question
-      let sampleQuestion: Question = {
-        qnumber: 2,
-        qtype: "mcq",
-        qtext: "Which product you purchased 2?",
-        choices: ["TV2","Fridge2"]
-      };
-
-      this.repository.saveQuestion(sampleQuestion).subscribe(order => {
-       debugger
-      });
-
-      //  //Adding survey
-      //  let date = new Date(2022);
-      //  let sampleSurvey: Survey = {
-      //   title: "thirdsurvey",
-      //   expires:  "2022-11-30",
-      //   questions: [6,5]
+    if(confirm("Are you sure?")) {
+      // //Adding question
+      // let sampleQuestion: Question = {
+      //   qnumber: 2,
+      //   qtype: "mcq",
+      //   qtext: "Which product you purchased 2?",
+      //   choices: ["TV2","Fridge2"]
       // };
 
-      // this.repository.saveSurvey(sampleSurvey).subscribe(order => {
+      // this.repository.saveQuestion(sampleQuestion).subscribe(order => {
       //  debugger
       // });
 
-    //   //Adding survey response
+      //  //Adding survey
+
+
+      //Adding survey - dynamic
+      let selectedQuestionNumbers:Number[] = []; 
+
+      let selectedQuestions = this.allquestions.filter( x=> x.checked == true);
+      for (let i = 0; i < selectedQuestions.length; i++){
+          selectedQuestionNumbers.push(selectedQuestions[i].qnumber);
+      }
+
+       let sampleSurvey: Survey = {
+        _id: "0",
+        title: this.surveytitle,
+        // expires:  "2022-11-30",
+        startdate:  this.datepipe.transform(this.startDate, 'yyyy-MM-dd'),
+        enddate:  this.datepipe.transform(this.endDate, 'yyyy-MM-dd'),
+        questions: selectedQuestionNumbers
+      };
+
+      debugger
+
+      this.repository.saveSurvey(sampleSurvey).subscribe(order => {
+        this.router.navigateByUrl('/survey-list');
+      });
+
+      //end of adding survey - dynamic code
+
+      //Adding survey response
+      
     //   let date = new Date(2022);
     //   let sampleSurveyResponse: SurveyResponse = {
     //    surveyId: "6370742a427f881f0f24c57c",
     //    answers: [
     //     {
-    //       qnumber: 10,
+    //       qnumber: 101123,
+    //       answer: "TV"
+    //     },
+    //     {
+    //       qnumber: 101123,
     //       answer: "TV"
     //     }
     //    ]
     //  };
-
+    //  debugger
     //  this.repository.saveSurveyResponse(sampleSurveyResponse).subscribe(order => {
     //   debugger
     //  });
 
-
-      this.router.navigateByUrl('/survey-list');
     }    
   }
 

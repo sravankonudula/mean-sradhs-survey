@@ -1,1 +1,34 @@
-<p>respond-survey works!</p>
+<!-- <form #form='ngForm'
+    (ngSubmit)='submitResponse(form)' class="m-2"> -->
+
+    <div style="margin:5%; font-size: 20px;">
+
+      <div *ngFor='let question of cursurveyquestions; let i = index' class="card m-1 p-1 bg-light">
+        <h4>    
+            {{ i+1 }}
+          </h4>
+          
+          <div class="card-text bg-white p-1"> <b>Question Text: </b>{{ question.qtext }}
+      
+              <div *ngIf="question.qtype==='mcq'">
+                  <div *ngFor="let option of question.choices; let i = index">
+                      <input type="radio" [name]="question.qnumber" [value]="option" (change)="onChange($event)">
+                      {{option}}
+
+                  </div>
+              </div>  
+      
+              <div *ngIf="question.qtype==='text'">
+                  <input type="text" name="txtAnswer">
+              </div>  
+          </div>
+        </div>
+      <br>
+        <button type="button" class="btn btn-success" (click)='submitSurvey()' style="font-size: 25px;" >Submit</button> &nbsp; &nbsp;
+        <button type="button" class="btn btn-secondary" (click)='cancel()' style="font-size: 25px;">Cancel</button>
+      
+      </div>
+      
+      <!-- </form> -->
+      
+      

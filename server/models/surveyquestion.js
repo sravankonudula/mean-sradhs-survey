@@ -15,7 +15,9 @@ let mongoose = require('mongoose');
 
 let surveyModel = mongoose.Schema({
     title: String,
-    expires: String,
+    startdate: String,
+    enddate: String,
+    // expires: String,
     questions:
     [
         {

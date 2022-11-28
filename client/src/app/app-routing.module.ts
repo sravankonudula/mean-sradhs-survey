@@ -16,55 +16,27 @@ import { CreateQuestionComponent } from './survey/create-question/create-questio
 import { RespondSurveyComponent } from './survey/respond-survey/respond-survey.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent, data: { title: 'Home' } },
-  { path: 'about', component: AboutComponent, data: { title: 'About' } },
-  {
-    path: 'products',
-    component: ProductsComponent,
-    data: { title: 'Products' },
-  },
-  {
-    path: 'services',
-    component: ServicesComponent,
-    data: { title: 'Services' },
-  },
-  {
-    path: 'survey-list',
-    component: SurveyComponent,
-    data: { title: 'Survey' },
-    canActivate: [StoreFirstGuard],
-  },
-  {
-    path: 'create-question',
-    component: CreateQuestionComponent,
-    data: { title: 'CreateQuestion' },
-  },
-  {
-    path: 'create-survey',
-    component: CreateSurveyComponent,
-    data: { title: 'CreateSurvey' },
-    canActivate: [StoreFirstGuard],
-  },
-  {
-    path: 'respond-survey',
-    component: RespondSurveyComponent,
-    data: { title: 'SurveyResponse' },
-  },
-  {
-    path: 'cart',
-    component: CartDetailComponent,
-    data: { title: 'Shopping cart' },
-    canActivate: [StoreFirstGuard],
-  },
-  {
-    path: 'checkout',
-    component: CheckoutComponent,
-    data: { title: 'Checkout' },
-    canActivate: [StoreFirstGuard],
-  },
-  { path: 'contact', component: ContactComponent, data: { title: 'Contact' } },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home' },
+
+  {path: 'home', component: HomeComponent, data: {title: 'Home'}},
+ {path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},
+
+ {path: 'about', component: AboutComponent, data: {title: 'About'}},
+ {path: 'products', component: ProductsComponent, data: {title: 'Products'}},
+ {path: 'services', component: ServicesComponent, data: {title: 'Services'}},
+ {path: 'contact', component: ContactComponent, data: {title: 'Contact'}},
+
+ {path: 'survey-list', component: SurveyComponent, data: { title: 'Survey List'}  },
+ {path: 'cart', component: CartDetailComponent, data: { title: 'Shopping Cart'}},
+ {path: 'checkout', component: CheckoutComponent, data: { title: 'Checkout'}},
+ {path: 'respond-survey/:id', component: RespondSurveyComponent, data: { title: 'SurveyResponse' }}, 
+ 
+ {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
+ 
+ {path: '', redirectTo: '/home', pathMatch: 'full'},
+ {path: '**', redirectTo: '/home', pathMatch: 'full'}
+
+ 
+  
 ];
 
 @NgModule({

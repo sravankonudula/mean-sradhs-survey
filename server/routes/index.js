@@ -21,8 +21,8 @@ let indexController = require('../controllers/index');
 // /* GET Contact Us page. */
 // router.get('/contact', indexController.displayContactPage);
 
-// /* GET Route for displaying the Login page */
-// router.get('/login', indexController.displayLoginPage);
+/* GET Route for displaying the Login page */
+router.get('/login', indexController.displayLoginPage);
 
 /* POST Route for processing the Login page */
 router.post('/login', indexController.processLoginPage);

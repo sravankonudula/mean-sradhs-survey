@@ -3,23 +3,37 @@
 
 <div style="margin:5%; font-size: 20px;">
 
-<div *ngFor='let question of surveyQuestions.questions' class="card m-1 p-1 bg-light">
-    <h4>
-      {{ question.qnumber }}
-    </h4>
-    
-    <div class="card-text bg-white p-1">{{ question.text }}
 
-        <div *ngIf="question.type==='mcq'">
+  <label for="startdate">Survey Title:</label>
+  <input type="text" id="surveytitle" name="surveytitle" [(ngModel)]="surveytitle">
+
+
+  <label for="startdate">Start Date:</label>
+<input type="date" id="startdate" name="startdate" [(ngModel)]="startDate">
+<label for="enddate">End Date:</label>
+<input type="date" id="enddate" name="enddate" [(ngModel)]="endDate">
+
+<div *ngFor='let question of allquestions' class="card m-1 p-1 bg-light">
+  <div><span>
+  <input type="checkbox" [(ngModel)]="question.checked"> &nbsp;<b> Select this Question as part of the survey </b>
+
+  </span>
+  </div>
+
+  
+    
+    <div class="card-text bg-white p-1"> <b>Question Text: </b>{{ question.qtext }}
+
+        <div *ngIf="question.qtype==='mcq'">
             <div *ngFor="let option of question.choices; let i = index">
-                <label>
-                <input type="radio" [name]="question.qnumber" [value]="option" (change) ="handleChange(option)">
+                <label><b>Option {{ i+1 }}:</b> {{question.qnumber}}
+                <!-- <input type="radio" [name]="question.qnumber" [value]="option" (change) ="handleChange(option)"> -->
                 {{option}}
                 </label>
             </div>
         </div>  
 
-        <div *ngIf="question.type==='text'">
+        <div *ngIf="question.qtype==='text'">
             <input type="text" name="txtAnswer">
         </div>  
     </div>

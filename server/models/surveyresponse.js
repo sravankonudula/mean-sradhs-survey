@@ -4,11 +4,10 @@ const { stringify } = require('querystring');
 let surveyResponseModel = mongoose.Schema({
     surveyId: String,
     answers:
-    [
-        {
-            qnumber: Number,
-            answer: String
-        }
+    [ {     
+        qnumber: Number,
+        answer: String
+      }
     ]
     },
     {

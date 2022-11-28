@@ -29,8 +29,9 @@ export class SurveyComponent implements OnInit {
 
   
 
-  respondToSurvey(): void {
-    this.router.navigateByUrl('/create-survey');
+  respondToSurvey(id: number): void {
+    debugger
+    this.router.navigateByUrl('/respond-survey/'+ id);
   }
   
 }

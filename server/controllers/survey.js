@@ -27,7 +27,8 @@ module.exports.processAddSurvey = (req, res, next) => {
     debugger
     let newSurvey = Survey({
         "title": req.body.title,
-        "expires": req.body.expires,
+        "startdate": req.body.startdate,
+        "enddate": req.body.enddate,
         "questions": req.body.questions
     });
 

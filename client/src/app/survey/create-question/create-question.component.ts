@@ -47,10 +47,11 @@ export class CreateQuestionComponent implements OnInit {
 
     this.question.choices = choices;
 
-    this.router.navigateByUrl('/survey-list');
+    
 
     this.repository.saveQuestion(this.question).subscribe(question => {
       debugger
+      this.router.navigateByUrl('/survey-list');
     });
 
   }

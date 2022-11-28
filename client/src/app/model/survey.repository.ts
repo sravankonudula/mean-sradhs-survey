@@ -35,6 +35,11 @@ export class SurveyRepository
     return this.questions;
   }
 
+  fetchAllQuestions(): Question[]
+  {
+    return this.questions;
+  }
+
   saveQuestion(question: Question): Observable<Question>
   {
     return this.dataSource.SaveQuestion(question);
@@ -42,13 +47,11 @@ export class SurveyRepository
 
   saveSurvey(survey: Survey): Observable<Survey>
   {
-    debugger
     return this.dataSource.SaveSurvey(survey);
   }
 
   saveSurveyResponse(surveyResponse: SurveyResponse): Observable<SurveyResponse>
   {
-    debugger
     return this.dataSource.SaveSurveyResponse(surveyResponse);
   }
 

@@ -10,6 +10,7 @@ import { CreateSurveyComponent } from './survey/create-survey/create-survey.comp
 import { CreateQuestionComponent } from './survey/create-question/create-question.component';
 import { RespondSurveyComponent } from './survey/respond-survey/respond-survey.component';
 import { FormsModule } from '@angular/forms';
+import { ReportsComponent } from './survey/reports/reports.component';
 
 export function jwtTokenGetter(): string
 {
@@ -23,6 +24,7 @@ export function jwtTokenGetter(): string
     CreateSurveyComponent,
     CreateQuestionComponent,
     RespondSurveyComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,7 @@ export function jwtTokenGetter(): string
       }
     })
   ],
-  providers: [],
+  providers: [SurveyComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

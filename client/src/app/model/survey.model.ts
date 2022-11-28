@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
 
 @Injectable()
-
 export class Survey
 {
   public title: String;
-  public expires: String;
+  public _id: string;
+  // public expires: String;
+  public startdate: String;
+  public enddate: String;
   public questions: Number[];
 
   // constructor(
@@ -32,17 +34,20 @@ export class Question{
   public qtype: String;
   public qtext: String;
   public choices: String[];
+  public checked: Boolean;
 }
 
 @Injectable()
 export class SurveyResponse{
   public surveyId: String;
-  public answers: [
-    {
-      qnumber: Number,
-      answer: String
-    }
-  ];
+  public answers: Answer[];
+}
+
+@Injectable()
+export class Answer{
+  public qnumber: Number;
+  public answer: String;
+   
 }
 
 export class QuestionUI{

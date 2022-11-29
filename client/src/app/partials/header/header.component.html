@@ -9,7 +9,7 @@
     <ul class="navbar-nav ml-auto">
 
       <li class="nav-item">
-        <a class="nav-link" href="/home"><i class="fas fa-lg fa-laptop-house"></i> Home</a>
+        <a class="nav-link active" href="/home"><i class="fas fa-lg fa-laptop-house"></i> Home</a>
       </li>
 
         <!-- <li class="nav-item">
@@ -25,11 +25,11 @@
         </li> -->
 
         <li class="nav-item">
-          <a class="nav-link" href="/survey-list"><i class="fas fa-book"></i> Survey </a>
+          <a class="nav-link active" href="/survey-list"><i class="fas fa-book"></i> Survey </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/contact"><i class="fas fa-mobile-alt"></i> Contact </a>
+          <a class="nav-link active" href="/contact"><i class="fas fa-mobile-alt"></i> Contact </a>
         </li>
         
         <li *ngIf='isLoggedIn()' class="nav-item ml-5 " [routerLinkActive]="['active']">
@@ -48,7 +48,7 @@
         </li>
 
         <li *ngIf='!isLoggedIn()' class="nav-item">
-          <a class="nav-link" href="/login"><i class="fas fa-lg fa-sign-in-alt"></i> Login </a>
+          <a class="nav-link active" href="/login"><i class="fas fa-lg fa-sign-in-alt"></i> Login </a>
         </li>
 <!-- 
         <li class="navbar-text">

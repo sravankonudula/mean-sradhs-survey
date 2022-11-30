@@ -51,9 +51,13 @@ export class CreateQuestionComponent implements OnInit {
 
     this.repository.saveQuestion(this.question).subscribe(question => {
       debugger
-      this.router.navigateByUrl('/survey-list');
+      this.router.navigateByUrl('/admin/main/all-questions');
     });
 
+  }
+
+  cancel(): void {
+    this.router.navigateByUrl('/admin/main/all-questions');
   }
 
 }

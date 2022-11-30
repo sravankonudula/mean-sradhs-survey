@@ -1,0 +1,67 @@
+<div class="bg-info p-2 text-center text-white">
+    <h3>Survey Admin - Register for new user</h3>
+  </div>
+
+
+  <main class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-sm-8 offset-sm-1">
+        <div class="bg-danger mt-2 p-2 text-center text-white"
+          *ngIf='errorMessage != null'>
+          {{ errorMessage }}
+        </div>
+        <h1>Please Register</h1>
+        <form autocomplete='off' #form='ngForm'  (ngSubmit)='register(form)'>
+
+            <fieldset class="form-group">
+                <label for="username">Username: </label>
+                <input
+                  type="text"
+                  [(ngModel)]='user.username'
+                  class="form-control"
+                  name="username"
+                  placeholder="Enter username"
+                  id="username"
+                  required
+                  autofocus
+                />
+              </fieldset>
+
+              <fieldset class="form-group">
+                <label for="password">Password: </label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  placeholder="Enter password"
+                  id="password"
+                  required
+                  [(ngModel)]='user.password'
+                />
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="email">Email: </label>
+                <input type="email" class="form-control"
+                name="email" placeholder="Enter Email Address" [(ngModel)]='user.email'
+                id="email" required>
+            </fieldset>
+            
+            <fieldset class="form-group">
+                <label for="displayName">Display Name: </label>
+                <input type="text" class="form-control"
+                name="displayName" placeholder="Enter Display Name" [(ngModel)]='user.displayName'
+                id="displayName" required>
+            </fieldset>
+           
+            <fieldset class="form-group text-right">
+                <input type="submit" class="btn btn-success" value="Register" /> &nbsp;
+                <a href="/">
+                    <input type="button" class="btn btn-warning" value="Cancel" />
+                </a>
+            </fieldset>
+  
+      </form>
+      </div>
+    </div>
+  </main>

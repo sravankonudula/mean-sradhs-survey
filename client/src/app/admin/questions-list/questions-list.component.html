@@ -1,0 +1,32 @@
+<table class="table table-sm table-striped">
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Question Type</th>
+        <th>Question Text</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let q of allquestions'>
+        <td>{{ q.qnumber }}</td>
+        <td>{{ q.qtype }}</td>
+        <td>{{ q.qtext }}</td>
+        <td>
+          <button class="btn btn-sm btn-primary m-1" (click)='editQuestion(q._id)'>
+            <i class="fas fa-pencil-alt"></i> Edit
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-danger m-1" (click)='deleteQuestion(q._id)'>
+            <i class="fas fa-trash-alt"></i> Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary" (click)='addQuestion()'>
+    <i class="fas fa-plus-circle"></i> Add New Question
+  </button>
+  

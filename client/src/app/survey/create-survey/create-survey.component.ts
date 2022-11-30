@@ -97,7 +97,7 @@ export class CreateSurveyComponent implements OnInit {
       debugger
 
       this.repository.saveSurvey(sampleSurvey).subscribe(order => {
-        this.router.navigateByUrl('/survey-list');
+        this.router.navigateByUrl('/admin/main/all-surveys');
       });
 
       //end of adding survey - dynamic code
@@ -127,11 +127,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigateByUrl('/survey-list');
-  }
-
-  cl(name: string) {
-    
+    this.router.navigateByUrl('/admin/main/all-surveys');
   }
 
 }

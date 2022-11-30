@@ -1,0 +1,32 @@
+<table class="table table-sm table-striped">
+    <thead>
+      <tr>
+        <th>Survey Title</th>
+        <th>Survey StartDate</th>
+        <th>Survey EndDate</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let s of allsurveys'>
+        <td>{{ s.title }}</td>
+        <td>{{ s.startdate }}</td>
+        <td>{{ s.enddate }}</td>
+        <td>
+          <button class="btn btn-sm btn-primary m-1" (click)='editSurvey(s._id)'>
+            <i class="fas fa-pencil-alt"></i> Edit
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-danger m-1" (click)='deleteSurvey(s._id)'>
+            <i class="fas fa-trash-alt"></i> Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary" (click)='addSurvey()'>
+    <i class="fas fa-plus-circle"></i> Add New Survey
+  </button>
+  

@@ -18,7 +18,8 @@ import { RespondSurveyComponent } from './survey/respond-survey/respond-survey.c
 const routes: Routes = [
 
   {path: 'home', component: HomeComponent, data: {title: 'Home'}},
- {path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},
+  {path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},
+  {path: 'register', data: {title: 'Register'}, redirectTo: '/admin/register', pathMatch: 'full'},
 
  {path: 'about', component: AboutComponent, data: {title: 'About'}},
  {path: 'products', component: ProductsComponent, data: {title: 'Products'}},

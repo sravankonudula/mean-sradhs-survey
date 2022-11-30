@@ -19,6 +19,11 @@ export class AuthService{
     return this.datasource.authenticate(user);
   }
 
+  register(user: User): Observable<any>
+  {
+    return this.datasource.register(user);
+  }
+
   storeUserData(token: any, user: User): void
   {
     this.datasource.storeUserData(token, user);

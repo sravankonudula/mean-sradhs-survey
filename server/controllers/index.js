@@ -112,6 +112,7 @@ module.exports.displayRegisterPage = (req, res, next) => {
 }
 
 module.exports.processRegisterPage = (req, res, next) => {
+    debugger
     // instantiate a user object
     let newUser = new User({
         username: req.body.username,
@@ -121,8 +122,10 @@ module.exports.processRegisterPage = (req, res, next) => {
     });
 
     User.register(newUser, req.body.password, (err) => {
+        debugger
         if(err)
         {
+            debugger
             console.log("Error: Inserting New User");
             if(err.name == "UserExistsError")
             {
@@ -148,10 +151,14 @@ module.exports.processRegisterPage = (req, res, next) => {
             /* TODO - Getting Ready to convert to API
             res.json({success: true, msg: 'User Registered Successfully!'});
             */
+            debugger
+            // return passport.authenticate('local')(req, res, () => {
+            //     debugger
+            //     res.redirect('/book-list')
+            // });
 
-            return passport.authenticate('local')(req, res, () => {
-                res.redirect('/book-list')
-            });
+            return res.json({success: true, msg: 'User registered Successfully!'});
+
         }
     });
 }

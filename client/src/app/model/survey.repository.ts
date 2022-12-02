@@ -11,7 +11,7 @@ export class SurveyRepository
 {
   private surveyQuestions: Survey[] = [];
   private questions: Question[] = [];
-
+  private responses: SurveyResponse[] = [];
 
   constructor(private dataSource: RestDataSource)
   {
@@ -55,6 +55,9 @@ export class SurveyRepository
     return this.dataSource.SaveSurveyResponse(surveyResponse);
   }
 
-
+  getAllSurveyResponses(): SurveyResponse[]
+  {
+    return this.responses;
+  }
 
 }

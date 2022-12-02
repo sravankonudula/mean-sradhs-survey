@@ -34,6 +34,9 @@ router.post('/add', surveyController.processAddSurvey);
 // router.get('/add', requireAuth, surveyController.displayAddPage);
 router.get('/addresponse', surveyController.displayAddSurveyResponse);
 
+/* GET Route for the survey Response List page - READ Operation */
+router.get('/getresponses', surveyController.displaySurveyResponsesList);
+
 /* POST Route for processing the Add page - CREATE Operation */
 // router.post('/add', requireAuth, surveyController.displayAddSurvey);
 router.post('/addresponse', surveyController.processAddSurveyResponse);

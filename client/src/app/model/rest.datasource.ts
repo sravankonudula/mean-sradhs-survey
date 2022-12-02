@@ -103,6 +103,11 @@ export class RestDataSource
     return this.http.post<SurveyResponse>(this.baseUrl + 'survey-list/addresponse', surveyResponse);
   }
 
+  getAllResponses(): Observable<SurveyResponse[]>
+  {
+    return this.http.get<SurveyResponse[]>(this.baseUrl + 'survey-list/getresponses');
+  }
+
  
   private loadToken(): void
   {

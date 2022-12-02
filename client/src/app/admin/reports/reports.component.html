@@ -1,0 +1,19 @@
+<div>
+   
+    <table class="table table-striped table-dark" style="width: 70%; margin-left:7%">
+        <tr>
+            <th>Survey Title</th>
+            <th>Survey Start Date</th>
+            <th>Survey End Date</th>
+            <th>View Report</th>
+        </tr>
+        <ng-container *ngFor="let survey of allsurveys">
+            <tr>
+                <td>{{survey.title}}</td>  
+                <td>{{survey.startdate}}</td>
+                <td>{{survey.enddate}}</td>
+                <button type="button" class="btn btn-link" (click)='viewReport(survey._id)'>View Report</button>
+            </tr>
+        </ng-container>
+    </table>
+    </div>

@@ -50,6 +50,22 @@ module.exports.displayAddSurvey = (req, res, next) => {
     res.json({success: true, msg: 'successfully displayed the add survey'});
 }
 
+
+module.exports.displaySurveyResponsesList = (req, res, next) => {
+    console.log("inside display survey response list");
+    SurveyResponse.find((err, surveyResponseList) => {
+        if(err)
+        {
+            return console.error(err);
+        }
+        else
+        {
+            res.json(surveyResponseList);
+        }
+    });
+}
+
+
 module.exports.processAddSurveyResponse = (req, res, next) => {
     debugger
     let newSurveyResponse = SurveyResponse({
@@ -74,12 +90,6 @@ module.exports.processAddSurveyResponse = (req, res, next) => {
 module.exports.displayAddSurveyResponse = (req, res, next) => {
     res.json({success: true, msg: 'successfully displayed the add survey response'});
 }
-
-
-
-
-
-
 
 // module.exports.processAddPage = (req, res, next) => {
 //     let newSurvey = Survey({

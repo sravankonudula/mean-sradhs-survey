@@ -10,10 +10,10 @@ import { CreateQuestionComponent } from '../survey/create-question/create-questi
 import { CreateSurveyComponent } from '../survey/create-survey/create-survey.component';
 import { RespondSurveyComponent } from '../survey/respond-survey/respond-survey.component';
 import { AdminComponent } from './admin.component';
-import { ReportsComponent } from '../survey/reports/reports.component';
 import { RegisterComponent } from './register/register.component';
 import { QuestionsListComponent } from './questions-list/questions-list.component';
 import { AllSurveysComponent } from './all-surveys/all-surveys.component';
+import { ReportsComponent } from './reports/reports.component';
 // import { OrderTableComponent } from './order-table/order-table.component';
 // import { BookEditorComponent } from './book-editor/book-editor.component';
 // import { BookTableComponent } from './book-table/book-table.component';
@@ -41,6 +41,6 @@ const routing = RouterModule.forChild([
 @NgModule({
   imports: [CommonModule, FormsModule, routing],
   providers: [AuthGuard],
-  declarations: [AuthComponent, AdminComponent, RegisterComponent, QuestionsListComponent, AllSurveysComponent]//, OrderTableComponent, BookEditorComponent, BookTableComponent]
+  declarations: [AuthComponent, AdminComponent, RegisterComponent, QuestionsListComponent, AllSurveysComponent, ReportsComponent]//, OrderTableComponent, BookEditorComponent, BookTableComponent]
 })
 export class AdminModule {}

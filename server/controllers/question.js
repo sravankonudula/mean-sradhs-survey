@@ -53,3 +53,51 @@ module.exports.displayAddQuestion = (req, res, next) => {
     res.json({success: true, msg: 'successfully displayed the question page'});
 }
 
+
+module.exports.processEditPage = (req, res, next) => {
+    debugger
+    let id = req.params.id
+
+    let updatedQuestion = Question({
+        "_id": id,
+        "qnumber": req.body.qnumber,
+        "qtype": req.body.qtype,
+        "qtext": req.body.qtext,
+        "choices": req.body.choices
+    });
+
+    Question.updateOne({_id: id}, updatedQuestion, (err) => {
+        debugger
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+            debugger
+            res.json({success: true, msg: 'Successfully Edited Question', question: updatedQuestion});
+        }
+    });
+}
+
+
+module.exports.performDelete = (req, res, next) => {
+    let id = req.params.id;
+
+    Question.deleteOne({_id: id}, (err) => {
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+             // refresh the book list
+             //res.redirect('/book-list');
+
+             res.json({success: true, msg: 'Successfully Deleted Question'});
+        }
+    });
+}
+

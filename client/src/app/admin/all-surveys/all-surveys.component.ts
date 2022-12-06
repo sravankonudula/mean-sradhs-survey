@@ -26,7 +26,11 @@ export class AllSurveysComponent implements OnInit {
     private router: Router,
     public question: Question,
     private dataSource: RestDataSource,
-    public activeRoute: ActivatedRoute) { }
+    public activeRoute: ActivatedRoute) {
+      this.dataSource.getSurveyQuestions().subscribe(data => {
+        this.allsurveys = data;
+      });
+     }
 
 ngOnInit(): void {
   this.dataSource.getSurveyQuestions().subscribe(data => {
@@ -34,19 +38,19 @@ ngOnInit(): void {
   });
 }
 
-
-deleteSurvey(id: number): void
+deleteSurvey(id: string): void
   {
-    alert("This will be implemented in next release...");
-    // if (confirm('Are you sure?') && (id !== undefined))
-    // {
-    //   //this.repository.deleteBook(id);
-    // }
-    // else
-    // {
-    //   window.location.reload(); // refresh fix
-    //   this.router.navigateByUrl('/admin/main/books');
-    // }
+    // alert("This will be implemented in next release...");
+    if (confirm('Are you sure?') && (id !== undefined))
+    {
+      this.repository.deleteSurvey(id);
+      this.allsurveys = this.repository.getSurveyQuestions();
+    }
+    else
+    {
+      window.location.reload(); // refresh fix
+      this.router.navigateByUrl('/admin/main/all-surveys');
+    }
   }
 
   addSurvey(): void
@@ -57,7 +61,7 @@ deleteSurvey(id: number): void
   editSurvey(id: number): void
   {
     alert("This will be implemented in next release...");
-    //this.router.navigateByUrl('/admin/main/books/edit/' + id);
+    // this.router.navigateByUrl('/admin/main/survey-list/edit/'+ id);
   }
 
 }

@@ -30,6 +30,7 @@ export class Survey
 
 @Injectable()
 export class Question{
+  public _id: string;
   public qnumber: Number;
   public qtype: String;
   public qtext: String;

@@ -48,12 +48,12 @@ router.post('/addresponse', surveyController.processAddSurveyResponse);
 
 
 /* GET Route for displaying the Edit page - UPDATE Operation */
-router.get('/edit/:id', requireAuth, surveyController.displayEditPage);
+router.get('/edit/:id', surveyController.displayEditPage);
 
 /* POST Route for processing the Edit page - UPDATE Operation */
-router.post('/edit/:id', requireAuth, surveyController.processEditPage);
+router.post('/edit/:id', surveyController.processEditPage);
 
 /* GET to perform  Deletion - DELETE Operation */
-router.get('/delete/:id', requireAuth, surveyController.performDelete);
+router.get('/delete/:id', surveyController.performDelete);
 
 module.exports = router;

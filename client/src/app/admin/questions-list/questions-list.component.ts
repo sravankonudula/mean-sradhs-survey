@@ -29,24 +29,27 @@ export class QuestionsListComponent implements OnInit {
     public activeRoute: ActivatedRoute) { }
 
 ngOnInit(): void {
+  debugger
   this.dataSource.getAllQuestions().subscribe(data => {
     this.allquestions = data;
   });
 }
 
 
-deleteQuestion(id: number): void
+deleteQuestion(id: string): void
   {
-    alert("This will be implemented in next release...");
-    // if (confirm('Are you sure?') && (id !== undefined))
-    // {
-    //   //this.repository.deleteBook(id);
-    // }
-    // else
-    // {
-    //   window.location.reload(); // refresh fix
-    //   this.router.navigateByUrl('/admin/main/books');
-    // }
+    // alert("This will be implemented in next release...");
+    if (confirm('Are you sure?') && (id !== undefined))
+    {
+      this.repository.deleteQuestion(id);
+      this.allquestions = this.repository.getAllQuestions();
+      // this.router.navigateByUrl('/admin/main/all-questions');
+    }
+    else
+    {
+      window.location.reload(); // refresh fix
+      this.router.navigateByUrl('/admin/main/questions/mode/id');
+    }
   }
 
   addQuestion(): void
@@ -56,8 +59,7 @@ deleteQuestion(id: number): void
 
   editQuestion(id: number): void
   {
-    alert("This will be implemented in next release...");
-    //this.router.navigateByUrl('/admin/main/books/edit/' + id);
+    this.router.navigateByUrl('/admin/main/questions/edit/'+ id);
   }
 
 }

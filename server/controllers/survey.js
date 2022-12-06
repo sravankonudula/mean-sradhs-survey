@@ -139,7 +139,7 @@ module.exports.displayEditPage = (req, res, next) => {
 module.exports.processEditPage = (req, res, next) => {
     let id = req.params.id
 
-    let updatedBook = Book({
+    let updatedSurvey = Survey({
         "_id": id,
         "name": req.body.name,
         "author": req.body.author,
@@ -148,7 +148,7 @@ module.exports.processEditPage = (req, res, next) => {
         "price": req.body.price
     });
 
-    Book.updateOne({_id: id}, updatedBook, (err) => {
+    Survey.updateOne({_id: id}, updatedSurvey, (err) => {
         if(err)
         {
             console.log(err);
@@ -156,9 +156,7 @@ module.exports.processEditPage = (req, res, next) => {
         }
         else
         {
-            // refresh the book list
-            //res.redirect('/book-list');
-            res.json({success: true, msg: 'successfully edited book', book: updatedBook});
+            res.json({success: true, msg: 'successfully edited survey', survey: updatedSurvey});
         }
     });
 }
@@ -166,7 +164,7 @@ module.exports.processEditPage = (req, res, next) => {
 module.exports.performDelete = (req, res, next) => {
     let id = req.params.id;
 
-    Book.remove({_id: id}, (err) => {
+    Survey.remove({_id: id}, (err) => {
         if(err)
         {
             console.log(err);
@@ -174,10 +172,7 @@ module.exports.performDelete = (req, res, next) => {
         }
         else
         {
-             // refresh the book list
-             //res.redirect('/book-list');
-
-             res.json({success: true, msg: 'successfully deleted book'});
+             res.json({success: true, msg: 'successfully deleted Survey'});
         }
     });
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SurveyRepository } from 'src/app/model/survey.repository';
 import { Question, Survey, SurveyResponse } from '../../model/survey.model';
 import { DatePipe } from '@angular/common'
@@ -14,10 +14,13 @@ import { Date } from 'mongoose';
 })
 export class CreateSurveyComponent implements OnInit {
 
+  allSurveyQuestions: Survey[];
   allquestions: Question[];
   startDate: Date;
   endDate: Date;
-  surveytitle: string;
+  surveytitle: String;
+  editing = false;
+  survey: Survey;
 
 
   constructor(    
@@ -25,9 +28,39 @@ export class CreateSurveyComponent implements OnInit {
     private router: Router,
     public question: Question,
     public datepipe: DatePipe,
-    private dataSource: RestDataSource
+    private dataSource: RestDataSource,
+    activeRoute: ActivatedRoute
     )
-     { }
+     { 
+      // this.dataSource.getSurveyQuestions().subscribe(data => {
+      //   this.allSurveyQuestions = data;
+
+      //   this.editing = activeRoute.snapshot.params.mode === 'edit';
+      //   if (this.editing)
+      //   {
+      //     debugger
+      //     this.survey = this.allSurveyQuestions.find(q => q._id === activeRoute.snapshot.params.id);
+      //     console.log(this.survey);
+    
+      //     this.surveytitle = this.survey.title;
+      //     this.startDate = this.survey.startdate;
+      //     this.endDate = this.survey.enddate;
+      //     this.allquestions = this.survey.title;
+      //     this.surveytitle = this.survey.title;
+      //     let choices: Array<String> = this.survey.choices;
+    
+        
+      //     this.questionUI.choice1 = choices[0];
+      //     this.questionUI.choice2 = choices[1];
+      //     this.questionUI.choice3 = choices[2];
+      //     this.questionUI.choice4 = choices[3];
+    
+      //       debugger
+      //     // Object.assign(this.question, repository.get(activeRoute.snapshot.params.id));
+      //   }
+
+      // });
+     }
 
   ngOnInit(): void {
     // this.allquestions = this.getAllQuestions;
@@ -96,9 +129,11 @@ export class CreateSurveyComponent implements OnInit {
 
       debugger
 
-      this.repository.saveSurvey(sampleSurvey).subscribe(order => {
-        this.router.navigateByUrl('/admin/main/all-surveys');
-      });
+      this.repository.saveSurvey(sampleSurvey);
+      this.router.navigateByUrl('/admin/main/all-surveys');
+      // .subscribe(order => {
+      //   this.router.navigateByUrl('/admin/main/all-surveys');
+      // });
 
       //end of adding survey - dynamic code
 

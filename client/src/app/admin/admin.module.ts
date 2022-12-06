@@ -24,9 +24,13 @@ const routing = RouterModule.forChild([
   { path: 'register', component: RegisterComponent },
   { path: 'main', component: AdminComponent, canActivate: [AuthGuard],
    children: [
-    //   { path: 'books/:mode/:id', component: BookEditorComponent, data: {title: 'Edit Book'}, canActivate: [AuthGuard]},
-    //   { path: 'books/:mode', component: BookEditorComponent, data: {title: 'Add Book'}, canActivate: [AuthGuard]},
-    
+      // { path: 'books/:mode/:id', component: BookEditorComponent, data: {title: 'Edit Book'}, canActivate: [AuthGuard]},
+      // { path: 'books/:mode', component: BookEditorComponent, data: {title: 'Add Book'}, canActivate: [AuthGuard]},
+
+      { path: 'questions/:mode/:id', component: CreateQuestionComponent, data: {title: 'Edit Question'}},
+      // { path: 'questions/:mode', component: BookEditorComponent, data: {title: 'Add Book'}, canActivate: [AuthGuard]},
+      { path: 'survey-list/:mode/:id', component: CreateSurveyComponent, data: {title: 'Edit Survey'}},
+
   { path: 'all-surveys', component: AllSurveysComponent, data: {title: 'All Surveys'}},
   { path: 'all-questions', component: QuestionsListComponent, data: {title: 'All Questions'}},
 

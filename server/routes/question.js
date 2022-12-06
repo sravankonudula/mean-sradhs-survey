@@ -30,5 +30,15 @@ router.get('/add', questionController.displayAddQuestion);
 // router.post('/add', requireAuth, surveyController.processAddPage);
 router.post('/add', questionController.processAddQuestionPage);
 
+/* GET Route for displaying the Edit page - UPDATE Operation */
+router.get('/edit/:id', requireAuth, questionController.displayAddQuestion);
+
+/* POST Route for processing the Edit page - UPDATE Operation */
+// router.post('/edit/:id', passport.authenticate('jwt', {session: false}), questionController.processEditPage);
+router.post('/edit/:id', questionController.processEditPage);
+
+/* GET to perform  Deletion - DELETE Operation */
+router.get('/delete/:id', questionController.performDelete);
+// router.get('/delete/:id', passport.authenticate('jwt', {session: false}), questionController.performDelete);
 
 module.exports = router;

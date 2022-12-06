@@ -87,6 +87,7 @@ export class RestDataSource
 
   SaveQuestion(question: Question): Observable<Question>
   {
+    debugger
     console.log(JSON.stringify(question));
     return this.http.post<Question>(this.baseUrl + 'questions/add', question);
   }
@@ -115,7 +116,38 @@ export class RestDataSource
     this.authToken = token;
     this.httpOptions.headers = this.httpOptions.headers.set('Authorization', this.authToken);
   }
-  
+
+  deleteQuestion(id: string): Observable<Question>
+  {
+    this.loadToken();
+
+    console.log(id);
+debugger
+    return this.http.get<Question>(`${this.baseUrl}questions/delete/${id}`, this.httpOptions);
+  }
+
+  updateQuestion(question: Question): Observable<Question>
+  {
+    debugger
+    this.loadToken();
+    return this.http.post<Question>(`${this.baseUrl}questions/edit/${question._id}`, question, this.httpOptions);
+  }
+
+  deleteSurvey(id: string): Observable<Survey>
+  {
+    this.loadToken();
+    debugger
+    console.log(id);
+
+    return this.http.get<Survey>(`${this.baseUrl}survey-list/delete/${id}`, this.httpOptions);
+  }
+
+  updateSurvey(survey: Survey): Observable<Survey>
+  {
+    debugger
+    this.loadToken();
+    return this.http.post<Survey>(`${this.baseUrl}survey-list/edit/${survey._id}`, survey, this.httpOptions);
+  }
 
 }
 

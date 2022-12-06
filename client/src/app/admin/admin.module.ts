@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { QuestionsListComponent } from './questions-list/questions-list.component';
 import { AllSurveysComponent } from './all-surveys/all-surveys.component';
 import { ReportsComponent } from './reports/reports.component';
+import { BarChartComponent } from './reports/bar-chart/bar-chart.component';
 // import { OrderTableComponent } from './order-table/order-table.component';
 // import { BookEditorComponent } from './book-editor/book-editor.component';
 // import { BookTableComponent } from './book-table/book-table.component';
@@ -32,6 +33,7 @@ const routing = RouterModule.forChild([
   { path: 'create-question', component: CreateQuestionComponent, data: { title: 'CreateQuestion', canActivate: [AuthGuard] },},
   { path: 'create-survey', component: CreateSurveyComponent, data: { title: 'CreateSurvey' }, canActivate: [AuthGuard]},
   { path: 'reports', component: ReportsComponent, data: { title: 'Reports' }, canActivate: [AuthGuard]},
+  { path: 'view-reports/:id', component: BarChartComponent, data: { title: 'ViewReports' }, canActivate: [AuthGuard]},
 
       { path: '**', redirectTo: 'survey-list' }]
   },
@@ -41,6 +43,6 @@ const routing = RouterModule.forChild([
 @NgModule({
   imports: [CommonModule, FormsModule, routing],
   providers: [AuthGuard],
-  declarations: [AuthComponent, AdminComponent, RegisterComponent, QuestionsListComponent, AllSurveysComponent, ReportsComponent]//, OrderTableComponent, BookEditorComponent, BookTableComponent]
+  declarations: [AuthComponent, AdminComponent, RegisterComponent, QuestionsListComponent, AllSurveysComponent, ReportsComponent, BarChartComponent]//, OrderTableComponent, BookEditorComponent, BookTableComponent]
 })
 export class AdminModule {}

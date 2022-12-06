@@ -41,7 +41,7 @@ ngOnInit(): void {
   }
 
   viewReport(id: number): void {
-    alert("Coming soon...");
+    this.router.navigateByUrl('admin/main/view-reports/:id');
   }
 
 }

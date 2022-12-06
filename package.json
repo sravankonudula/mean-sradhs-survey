@@ -6,7 +6,7 @@
     "start": "node ./server.js"
   },
   "engines": {
-    "node": "^12.18.3",
+    "node": "^16.13.1",
     "npm": "^6.0.0"
   },
   "dependencies": {
@@ -44,7 +44,7 @@
     "@types/passport-local": "^1.0.33",
     "@types/passport-local-mongoose": "^4.0.13"
   },
-  "description": "A demo app for COMP229 Week 6",
+  "description": "Sradhs Surveys",
   "main": "server.js",
   "repository": {
     "type": "git",

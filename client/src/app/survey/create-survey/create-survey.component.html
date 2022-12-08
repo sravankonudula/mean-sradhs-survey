@@ -1,17 +1,22 @@
 <!-- <form #form='ngForm'
     (ngSubmit)='submitResponse(form)' class="m-2"> -->
 
-<div style="margin:5%; font-size: 20px;">
+<div style="margin:5%;" class="textFont">
 
-
-  <label for="startdate">Survey Title:</label>
+<table><tr><td>
+  <label for="startdate" class="textFont">Survey Title:</label>
   <input type="text" id="surveytitle" name="surveytitle" [(ngModel)]="surveytitle">
-
-
+</td>
+</tr>
+<tr><td>
   <label for="startdate">Start Date:</label>
 <input type="date" id="startdate" name="startdate" [(ngModel)]="startDate">
+</td><td>
 <label for="enddate">End Date:</label>
 <input type="date" id="enddate" name="enddate" [(ngModel)]="endDate">
+</td>
+</tr>
+</table>
 
 <div *ngFor='let question of allquestions' class="card m-1 p-1 bg-light">
   <div><span>
@@ -41,8 +46,8 @@
     </div>
   </div>
 <br>
-  <button type="button" class="btn btn-success" (click)='submitSurvey()' style="font-size: 25px;" >Submit</button> &nbsp; &nbsp;
-  <button type="button" class="btn btn-secondary" (click)='cancel()' style="font-size: 25px;">Cancel</button>
+  <button type="button" class="btn btn-success" (click)='submitSurvey()'  >Submit</button> &nbsp; &nbsp;
+  <button type="button" class="btn btn-secondary" (click)='cancel()' >Cancel</button>
 
 </div>
 

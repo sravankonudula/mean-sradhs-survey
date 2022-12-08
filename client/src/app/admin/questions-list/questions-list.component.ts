@@ -26,7 +26,11 @@ export class QuestionsListComponent implements OnInit {
     private router: Router,
     public question: Question,
     private dataSource: RestDataSource,
-    public activeRoute: ActivatedRoute) { }
+    public activeRoute: ActivatedRoute) { 
+      this.dataSource.getAllQuestions().subscribe(data => {
+        this.allquestions = data;
+      });
+    }
 
 ngOnInit(): void {
   debugger

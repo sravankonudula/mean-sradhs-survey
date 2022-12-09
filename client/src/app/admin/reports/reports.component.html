@@ -10,7 +10,8 @@
                 <td>{{survey.title}}</td>  
                 <td>{{survey.startdate}}</td>
                 <td>{{survey.enddate}}</td>
-                <button type="button" class="btn btn-link" (click)='viewReport(survey._id)'>View Report</button>
+                <button type="button" class="btn btn-link" (click)='viewReport(survey._id)'>View Charts</button>
+                <button type="button" class="btn btn-link" (click)='downloadReport(survey._id)'>Download Report</button>
             </tr>
         </ng-container>
     </table>

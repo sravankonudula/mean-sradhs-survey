@@ -16,12 +16,18 @@ export class BarChartComponent implements OnInit {
   allsurveys: Survey[];
   allsurveyresponses: SurveyResponse[];
   ques:String[];
+
+  curSurveyId: String;
   
   constructor(
     private router: Router,
     public question: Question,
     private dataSource: RestDataSource,
-    public activeRoute: ActivatedRoute) { }
+    public activeRoute: ActivatedRoute) { 
+    
+      this.curSurveyId = activeRoute.snapshot.params.id;
+    
+    }
 
   
   
@@ -38,6 +44,65 @@ export class BarChartComponent implements OnInit {
     // }
     // console.log(this.ques)
     // this.buildFormData();
+
+    this.dataSource.getAllQuestions().subscribe(data => {
+      this.allquestions = data;
+      this.allquestions.forEach(x => x.checked = false);
+
+      this.dataSource.getSurveyQuestions().subscribe(data => {
+        this.allsurveys = data;
+
+        this.dataSource.getAllResponses().subscribe(data => {
+          this.allsurveyresponses = data;
+          this.loadGraph();
+        });
+
+      });
+
+    });
+
+  }
+
+  loadGraph(){
+
+    let curSurvey =  this.allsurveys.find(s => s._id === this.curSurveyId);
+
+    // var cursurveyQuestions = this.allquestions.filter(q => curSurvey.questions.includes(q.qnumber)).map(q => q.qtext);
+
+    var curSurveyResponses = this.allsurveyresponses.filter(s => s.surveyId === this.curSurveyId).map(r => r.answers);
+
+    var responses: any[] = [];
+
+    let tvCount: number = 0;
+    let laptopCount: number = 0;
+    let mobileCount: number = 0;
+    let tabletCount: number = 0;
+
+    curSurveyResponses.forEach(r => {
+      r.forEach(ra => {
+        if(ra.qnumber == 1 && ra.answer === "TV"){
+          tvCount++;
+        }
+        if(ra.qnumber == 1 && ra.answer === "Laptop"){
+          laptopCount++;
+        }
+        if(ra.qnumber == 1 && ra.answer === "Mobile"){
+          mobileCount++;
+        }
+        if(ra.qnumber == 1 && ra.answer === "Tablet"){
+          tabletCount++;
+        }
+          
+      });
+    });
+
+    responses.push(tvCount);
+    responses.push(laptopCount);
+    responses.push(mobileCount);
+    responses.push(tabletCount);
+
+    debugger
+
     this.chart = new Chart("canvas", {
       type: "bar",
       data: {
@@ -45,7 +110,8 @@ export class BarChartComponent implements OnInit {
         datasets: [
           {
             label: "# of Votes",
-            data: [10,11,1,5],
+            data: responses,
+            // data: [10,11,1,5],
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",

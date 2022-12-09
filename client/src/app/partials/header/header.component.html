@@ -32,20 +32,22 @@
           <a class="nav-link active" href="/contact"><i class="fas fa-mobile-alt"></i> Contact </a>
         </li>
         
-        <li *ngIf='isLoggedIn()' class="nav-item ml-5 " [routerLinkActive]="['active']">
+        <li *ngIf='isLoggedIn()' class="nav-item" [routerLinkActive]="['active']">
           <a class="nav-link text-warning" routerLink="/admin/main"><i class="fas fa-lg fa-user-shield"></i> Admin </a>
         </li>
 
-        <li *ngIf='isLoggedIn()'
-            class="navbar-text text-success ml-5 mr-5 d-none d-lg-inline">
-            <i class="fas fa-lg fa-user"></i> Welcome, {{ user.displayName }}
-        </li>
+       
 
 
         <li *ngIf='isLoggedIn()' class="nav-item">
           <a (click)='onLogoutClick()' routerLink='/logout' class="nav-link" href="/login">
             <i class="fas fa-lg fa-sign-out-alt"></i> Logout </a>
         </li>
+
+        <li *ngIf='isLoggedIn()'
+        class="navbar-text text-success d-none d-lg-inline">
+        <i class="fas fa-lg fa-user"></i> Welcome, {{ user.displayName }}
+    </li>
 
         <li *ngIf='!isLoggedIn()' class="nav-item">
           <a class="nav-link active" href="/login"><i class="fas fa-lg fa-sign-in-alt"></i> Login </a>

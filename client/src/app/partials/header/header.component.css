@@ -25,3 +25,16 @@ header nav ul li a {
     display: block;
     margin-right: 20px;
 }
+
+.text-warning {
+    color: #ca726d!important;
+}
+
+.text-success {
+    padding-top: 20px;
+    color: #284da7!important;
+}
+
+.nav-item{
+    margin: 10px;
+}

@@ -60,8 +60,7 @@ deleteSurvey(id: string): void
 
   editSurvey(id: number): void
   {
-    alert("This will be implemented in next release...");
-    // this.router.navigateByUrl('/admin/main/survey-list/edit/'+ id);
+    this.router.navigateByUrl('/admin/main/survey-list/edit/'+ id);
   }
 
 }

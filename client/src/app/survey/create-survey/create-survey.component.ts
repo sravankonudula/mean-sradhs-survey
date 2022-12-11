@@ -16,8 +16,8 @@ export class CreateSurveyComponent implements OnInit {
 
   allSurveyQuestions: Survey[];
   allquestions: Question[];
-  startDate: Date;
-  endDate: Date;
+  startDate: any;
+  endDate: any;
   surveytitle: String;
   editing = false;
   survey: Survey;
@@ -32,34 +32,41 @@ export class CreateSurveyComponent implements OnInit {
     activeRoute: ActivatedRoute
     )
      { 
-      // this.dataSource.getSurveyQuestions().subscribe(data => {
-      //   this.allSurveyQuestions = data;
+     
+      this.dataSource.getSurveyQuestions().subscribe(data => {
+        this.allSurveyQuestions = data;
 
-      //   this.editing = activeRoute.snapshot.params.mode === 'edit';
-      //   if (this.editing)
-      //   {
-      //     debugger
-      //     this.survey = this.allSurveyQuestions.find(q => q._id === activeRoute.snapshot.params.id);
-      //     console.log(this.survey);
+        this.editing = activeRoute.snapshot.params.mode === 'edit';
+        if (this.editing)
+        {
+          debugger
+          this.survey = this.allSurveyQuestions.find(q => q._id === activeRoute.snapshot.params.id);
+          console.log(this.survey);
     
-      //     this.surveytitle = this.survey.title;
-      //     this.startDate = this.survey.startdate;
-      //     this.endDate = this.survey.enddate;
-      //     this.allquestions = this.survey.title;
-      //     this.surveytitle = this.survey.title;
-      //     let choices: Array<String> = this.survey.choices;
+          this.surveytitle = this.survey.title;
+
+          const datePipe = new DatePipe('en-US');
+
+          this.startDate = datePipe.transform(this.survey.startdate.toString(), 'yyyy-MM-dd');
+          this.endDate = datePipe.transform(this.survey.enddate.toString(), 'yyyy-MM-dd');
+          // this.allquestions = this.survey.questions;
+
+debugger
+          // this.allquestions = this.survey.title;
+          // this.surveytitle = this.survey.title;
+          // let choices: Array<String> = this.survey.choices;
     
         
-      //     this.questionUI.choice1 = choices[0];
-      //     this.questionUI.choice2 = choices[1];
-      //     this.questionUI.choice3 = choices[2];
-      //     this.questionUI.choice4 = choices[3];
+          // this.questionUI.choice1 = choices[0];
+          // this.questionUI.choice2 = choices[1];
+          // this.questionUI.choice3 = choices[2];
+          // this.questionUI.choice4 = choices[3];
     
-      //       debugger
-      //     // Object.assign(this.question, repository.get(activeRoute.snapshot.params.id));
-      //   }
+            debugger
+          // Object.assign(this.question, repository.get(activeRoute.snapshot.params.id));
+        }
 
-      // });
+      });
      }
 
   ngOnInit(): void {
@@ -94,7 +101,7 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   submitSurvey(): void {
-    if(confirm("Are you sure?")) {
+    if(confirm("Are you sure you want to create survey?")) {
       // //Adding question
       // let sampleQuestion: Question = {
       //   qnumber: 2,
@@ -126,8 +133,6 @@ export class CreateSurveyComponent implements OnInit {
         enddate:  this.datepipe.transform(this.endDate, 'yyyy-MM-dd'),
         questions: selectedQuestionNumbers
       };
-
-      debugger
 
       this.repository.saveSurvey(sampleSurvey);
       this.router.navigateByUrl('/admin/main/all-surveys');

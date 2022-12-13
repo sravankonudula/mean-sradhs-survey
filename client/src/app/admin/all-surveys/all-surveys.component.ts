@@ -41,7 +41,7 @@ ngOnInit(): void {
 deleteSurvey(id: string): void
   {
     // alert("This will be implemented in next release...");
-    if (confirm('Are you sure?') && (id !== undefined))
+    if (confirm('Are you sure you want to delete?') && (id !== undefined))
     {
       this.repository.deleteSurvey(id);
       this.allsurveys = this.repository.getSurveyQuestions();

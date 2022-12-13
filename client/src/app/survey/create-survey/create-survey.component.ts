@@ -33,49 +33,57 @@ export class CreateSurveyComponent implements OnInit {
     )
      { 
      
-      this.dataSource.getSurveyQuestions().subscribe(data => {
-        this.allSurveyQuestions = data;
+      this.dataSource.getAllQuestions().subscribe(data => {
+        this.allquestions = data;
+        this.dataSource.getSurveyQuestions().subscribe(data => {
+          this.allSurveyQuestions = data;
 
-        this.editing = activeRoute.snapshot.params.mode === 'edit';
-        if (this.editing)
-        {
-          debugger
-          this.survey = this.allSurveyQuestions.find(q => q._id === activeRoute.snapshot.params.id);
-          console.log(this.survey);
-    
-          this.surveytitle = this.survey.title;
+          this.editing = activeRoute.snapshot.params.mode === 'edit';
+          if (this.editing)
+          {
+            
+            this.survey = this.allSurveyQuestions.find(q => q._id === activeRoute.snapshot.params.id);
+            console.log(this.survey);
+      
+            this.surveytitle = this.survey.title;
 
-          const datePipe = new DatePipe('en-US');
+            const datePipe = new DatePipe('en-US');
 
-          this.startDate = datePipe.transform(this.survey.startdate.toString(), 'yyyy-MM-dd');
-          this.endDate = datePipe.transform(this.survey.enddate.toString(), 'yyyy-MM-dd');
-          // this.allquestions = this.survey.questions;
+            this.startDate = datePipe.transform(this.survey.startdate.toString(), 'yyyy-MM-dd');
+            this.endDate = datePipe.transform(this.survey.enddate.toString(), 'yyyy-MM-dd');
+            this.allquestions  = this.allquestions.filter(x => this.survey.questions.indexOf(x.qnumber) !== -1);
+            this.allquestions.forEach(x => x.checked = true);
 
-debugger
-          // this.allquestions = this.survey.title;
-          // this.surveytitle = this.survey.title;
-          // let choices: Array<String> = this.survey.choices;
-    
-        
-          // this.questionUI.choice1 = choices[0];
-          // this.questionUI.choice2 = choices[1];
-          // this.questionUI.choice3 = choices[2];
-          // this.questionUI.choice4 = choices[3];
-    
-            debugger
-          // Object.assign(this.question, repository.get(activeRoute.snapshot.params.id));
-        }
+            
+            // this.allquestions = this.survey.title;
+            // this.surveytitle = this.survey.title;
+            // let choices: Array<String> = this.survey.choices;
+      
+          
+            // this.questionUI.choice1 = choices[0];
+            // this.questionUI.choice2 = choices[1];
+            // this.questionUI.choice3 = choices[2];
+            // this.questionUI.choice4 = choices[3];
+      
+              
+            // Object.assign(this.question, repository.get(activeRoute.snapshot.params.id));
+          }
+          else{
+            this.allquestions.forEach(x => x.checked = false);
+          }
 
-      });
+        });
+     });
+
      }
 
   ngOnInit(): void {
     // this.allquestions = this.getAllQuestions;
 
-    this.dataSource.getAllQuestions().subscribe(data => {
-      this.allquestions = data;
-    });
-    this.allquestions.forEach(x => x.checked = false);
+    // this.dataSource.getAllQuestions().subscribe(data => {
+    //   this.allquestions = data;
+    // });
+    // this.allquestions.forEach(x => x.checked = false);
   }
 
   get surveyQuestions(): Survey {
@@ -101,7 +109,14 @@ debugger
   }
 
   submitSurvey(): void {
-    if(confirm("Are you sure you want to create survey?")) {
+    let msg:string;
+    if(this.editing){
+      msg = "Are you sure you want to save survey?";
+    }
+    else{
+      msg = "Are you sure you want to create survey?";
+    }
+    if(confirm(msg)) {
       // //Adding question
       // let sampleQuestion: Question = {
       //   qnumber: 2,
@@ -126,7 +141,7 @@ debugger
       }
 
        let sampleSurvey: Survey = {
-        _id: "0",
+        _id: this.survey != undefined ? this.survey._id : "0",
         title: this.surveytitle,
         // expires:  "2022-11-30",
         startdate:  this.datepipe.transform(this.startDate, 'yyyy-MM-dd'),

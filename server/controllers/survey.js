@@ -137,18 +137,19 @@ module.exports.displayEditPage = (req, res, next) => {
 }
 
 module.exports.processEditPage = (req, res, next) => {
+    debugger
     let id = req.params.id
 
     let updatedSurvey = Survey({
         "_id": id,
-        "name": req.body.name,
-        "author": req.body.author,
-        "published": req.body.published,
-        "description": req.body.description,
-        "price": req.body.price
+        "title": req.body.title,
+        "startdate": req.body.startdate,
+        "enddate": req.body.enddate,
+        "questions": req.body.questions
     });
 
     Survey.updateOne({_id: id}, updatedSurvey, (err) => {
+        debugger
         if(err)
         {
             console.log(err);

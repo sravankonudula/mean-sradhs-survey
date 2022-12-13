@@ -43,7 +43,7 @@ ngOnInit(): void {
 deleteQuestion(id: string): void
   {
     // alert("This will be implemented in next release...");
-    if (confirm('Are you sure?') && (id !== undefined))
+    if (confirm('Are you sure you want to delete?') && (id !== undefined))
     {
       this.repository.deleteQuestion(id);
       this.allquestions = this.repository.getAllQuestions();
